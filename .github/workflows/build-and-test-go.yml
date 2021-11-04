@@ -1,0 +1,26 @@
+name: Build and Test Go
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      run: |
+        sudo apt update
+        sudo apt install -y -y golang
+
+    - name: Build
+      run: go build
+
+    - name: Test
+      run: go test -v
+
